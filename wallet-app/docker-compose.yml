@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: fb7960l1_checko
+      MYSQL_USER: fb7960l1_checko
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3306:3306"
+
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    env_file:
+      - config.env
+    depends_on:
+      - db
